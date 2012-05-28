@@ -1,0 +1,61 @@
+.a-desktop-wallpaper {
+  background-color: #3d71b8;
+}
+
+.a-desktop-wallpaper-tiled {
+  background-repeat: repeat;
+}
+
+.a-desktop-shortcut {
+  cursor: pointer;
+  text-align: center;
+  padding: 8px;
+  margin: 8px;
+  width: 64px;
+}
+
+.a-desktop-shortcut-icon {
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+
+.a-desktop-shortcut-text {
+  text-decoration: none;
+  padding-top: 5px;
+  color: white;
+}
+
+.x-view-over .a-desktop-shortcut-text {
+  text-decoration: underline;
+}
+
+.a-desktop-taskbar {
+  height: 26px;
+  padding: 0;
+  padding-left: 4px !important;
+}
+
+.a-desktop-taskbar .x-toolbar {
+  height: 26px;
+  background: transparent none;
+  border-color: transparent;
+}
+
+.a-desktop-start .x-btn-arrow {
+  background-image: none;
+}
+
+.a-desktop-start .x-btn-arrow-right {
+  padding-left: 10px;
+}
+
+.a-desktop-start-icon {
+  background-image: url(logo.png);
+  background-color: transparent;
+}
+
+.a-desktop-start-menu-sidebar .x-toolbar-item {
+  width: 96px;
+}

@@ -1,0 +1,9 @@
+.a-login-user .x-form-field {
+  background: url(user.gif) no-repeat 1px 2px;
+  padding-left: 18px;
+}
+
+.a-login-key .x-form-field {
+  background: url(key.gif) no-repeat 1px 2px;
+  padding-left: 18px;
+}
