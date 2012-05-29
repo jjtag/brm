@@ -4,7 +4,7 @@ Ext.define('App.Manager', {
   },
   isReady: false,
   useQuickTips: true,
-  modules: ['App.Demo', 'App.Demo1'],
+  modules: ['App.Currency'],//['App.Currency', 'App.Demo1'],
   menus: [{
     module: 'App.Demo'
   }, {
@@ -36,7 +36,7 @@ Ext.define('App.Manager', {
   tools: ['->', {
     module: 'App.Logout'
   }],
-  shortcuts: ['App.Demo', 'App.Demo1', 'App.Logout'],
+  shortcuts: ['App.Currency', 'App.Demo1', 'App.Logout'],
   
   constructor: function(config) {
     var me = this;

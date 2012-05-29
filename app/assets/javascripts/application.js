@@ -12,5 +12,5 @@
 //
 // !=! require jquery
 // !=! require jquery_ujs
-//= require module
+//= require master/module
 //= require_tree .

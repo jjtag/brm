@@ -11,3 +11,10 @@
  *= require_self
  *= require_tree .
 */
+body {
+  background-color: #3d71b8;
+}
+
+.shortcut-icon {
+  background-image: url(shortcut.png) no-repeat;
+}

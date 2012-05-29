@@ -4,6 +4,7 @@ Ext.define('App.Demo1', {
   config: {
     name: 'demo',
     text: '模块演示一',
+	iconCls: 'shortcut-icon',
     tooltip: '模块演示一'
   },
 
@@ -29,5 +30,4 @@ Ext.define('App.Demo1', {
     }]
 */
   }
-  
 });

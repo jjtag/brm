@@ -1,13 +1,12 @@
-Ext.define('App.Editor', {
+Ext.define('App.Dialog', {
   extend: 'Ext.window.Window',
 
   layout: 'fit',
-//  resizable: false,
 
   initComponent: function() {
     var me = this;
     me.maximizable = false;
-
+/*
     me.form = new Ext.form.Panel({
       bodyPadding: true,
       items: me.items
@@ -17,11 +16,11 @@ Ext.define('App.Editor', {
     me.buttons = [{
       text: '保存',
       handler: me.onSaveClick
-    }];
+    }];*/
     me.callParent(arguments);
   },
 
-  onSaveClick: function() {
+/*  onSaveClick: function() {
     var me = this, form = me.form.getForm();
     form.isValid() && form.doAction('submit', {
       url: me.url,
@@ -35,4 +34,5 @@ Ext.define('App.Editor', {
       }
     });
   }
-})
+*/
+});

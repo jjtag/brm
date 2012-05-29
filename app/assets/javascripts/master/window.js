@@ -1,7 +1,9 @@
-Ext.define('App.Report', {
+Ext.define('App.Window', {
   extend: 'Ext.window.Window',
   
   layout: 'border',
+  width: 480,
+  height: 320,
 //  bodyPadding: true,
     
 //  border: true,
@@ -12,28 +14,26 @@ Ext.define('App.Report', {
   
   initComponent: function() {
     var me = this;
-    me.items = [{
-      region: 'west',
+
+    me.west.region = 'west';
+    Ext.applyIf(me.west, {
       width: 200,
-      minWidth: 150,
+      minWidth: 100,
       maxWidth: 400,
       split: true,
       collapsible: true,
-      animCollapse: true,
-      title: '报表参数'
-    }, {
-      region: 'center',
-      items: [{
-        region: 'north',
-        minHeight: 30,
-        html: 'north zone'
-      }, {
-        region: 'center',
-        xtype: 'grid',
+      animCollapse: true
+    });
+
+    me.center.region = 'center';
+      
+    me.items = [me.west, me.center];
+
+    delete me.west;
+    delete me.center;
+/*        xtype: 'grid',
         columns: [{text: 'world'}],
-        store: new Ext.data.ArrayStore()
-      }]
-    }];
+        store: new Ext.data.ArrayStore()*/
     /*  items: [{
         region: 'north',
         height: 100,

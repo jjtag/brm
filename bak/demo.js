@@ -4,6 +4,7 @@ Ext.define('App.Demo', {
   config: {
     name: 'demo',
     text: '模块演示',
+    largeIconCls: 'shortcut-icon',
     tooltip: '模块演示'
   },
 
@@ -14,13 +15,22 @@ Ext.define('App.Demo', {
     width: 640,
     height: 480,
     items: [{
-      xtype: 'textfield',
-      fieldLabel: 'Label1',
-      name: 'label1'
+      xtype: 'combobox',
+      fieldLabel: '币种',
+      name: 'coin_of',
+      store: new Ext.data.Store({
+        model: 'App.data.Coin',
+        data: []
+      })
     }, {
       xtype: 'datefield',
-      fieldLabel: 'Date',
-      name: 'date1'
+      fieldLabel: '日期',
+      name: 'from_at'
+    }, {
+      xtype: 'numberfield',
+      hideTrigger: true,
+      fieldLabel: '金额',
+      name: 'amount'
     }]
 /*
     items: [{

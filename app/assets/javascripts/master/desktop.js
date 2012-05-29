@@ -1,6 +1,6 @@
 Ext.define('App.data.Shortcut', {
   extend: 'Ext.data.Model',
-  fields: ['name', 'text', 'tooltip', 'iconCls', 'module']
+  fields: ['name', 'text', 'tooltip', 'largeIconCls', 'module']
 });
 
 Ext.define('App.Desktop', {
@@ -16,7 +16,7 @@ Ext.define('App.Desktop', {
   shortcutTpl: [
     '<tpl for=".">',
       '<div class="a-desktop-shortcut">',
-        '<div class="a-desktop-shortcut-icon {iconCls}">',
+        '<div class="a-desktop-shortcut-icon {largeIconCls}">',
           '<img src="', Ext.BLANK_IMAGE_URL, '" title="{tooltip}">',
         '</div>',
         '<span class="a-desktop-shortcut-text">{text}</span>',

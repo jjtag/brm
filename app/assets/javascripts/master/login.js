@@ -48,7 +48,7 @@ Ext.define('App.Login', {
         name: 'remember',
         fieldLabel: '&#160;',
         labelSeparator: '',
-        boxLabel: '记住我'
+        boxLabel: '记住我的帐号'
       }]
     });
     me.username = me.form.items.getAt(0);
