@@ -1,0 +1,24 @@
+{
+  data: [{
+    id: 1,
+    name: '本币',
+    symbol: '￥',
+    rate: 1
+  }, {
+    id: 2,
+    name: '美元',
+    symbol: '＄',
+    rate: 6.3454
+  }, {
+    id: 3,
+    name: '欧元',
+    symbol: '￡',
+    rate: 10.4567
+  }, {
+    id: 4,
+    name: '港币',
+    symbol: '￥',
+    rate: 0.9456
+  }],
+  totalPoperty: 100
+}

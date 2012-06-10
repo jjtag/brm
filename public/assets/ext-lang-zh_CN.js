@@ -38,7 +38,7 @@ Ext.onReady(function() {
     // changing the msg text below will affect the LoadMask
     Ext.define("Ext.locale.zh_CN.view.AbstractView", {
         override: "Ext.view.AbstractView",
-        msg: "讀取中..."
+        msg: "读取中..."
     });
 
     if (Ext.Date) {

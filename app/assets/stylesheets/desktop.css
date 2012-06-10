@@ -32,15 +32,23 @@
 }
 
 .a-desktop-taskbar {
-  height: 26px;
+  height: 28px;
   padding: 0;
   padding-left: 4px !important;
 }
 
 .a-desktop-taskbar .x-toolbar {
-  height: 26px;
+  height: 28px;
   background: transparent none;
   border-color: transparent;
+}
+
+.x-ie6 .a-desktop-taskbar .x-toolbar {
+  border-color: #d3e1f1;
+}
+
+.x-toolbar .x-toolbar {
+  padding: 0;
 }
 
 .a-desktop-start .x-btn-arrow {
@@ -58,4 +66,9 @@
 
 .a-desktop-start-menu-sidebar .x-toolbar-item {
   width: 96px;
+}
+
+.a-desktop-user-icon {
+  background-image: url(user.png);
+  background-color: transparent;
 }

@@ -8,6 +8,6 @@
   padding-left: 18px;
 }
 
-.a-login-icon {
-  background-image: url(login.png);
+.a-logout-icon {
+  background: url(logout.png);
 }

@@ -1,6 +1,6 @@
 Ext.define('App.data.Shortcut', {
   extend: 'Ext.data.Model',
-  fields: ['name', 'text', 'tooltip', 'largeIconCls', 'module']
+  fields: ['name', 'text', 'tooltip', 'bigIconCls', 'module']
 });
 
 Ext.define('App.Desktop', {
@@ -16,7 +16,7 @@ Ext.define('App.Desktop', {
   shortcutTpl: [
     '<tpl for=".">',
       '<div class="a-desktop-shortcut">',
-        '<div class="a-desktop-shortcut-icon {largeIconCls}">',
+        '<div class="a-desktop-shortcut-icon {bigIconCls}">',
           '<img src="', Ext.BLANK_IMAGE_URL, '" title="{tooltip}">',
         '</div>',
         '<span class="a-desktop-shortcut-text">{text}</span>',
@@ -108,26 +108,29 @@ Ext.define('App.Desktop', {
   },
 
   createWindow: function(config, cls) {
-    config = Ext.applyIf(config || {}, {
+    config = config || {}
+    config = Ext.applyIf(config, {
       stateful: false,
       isWindow: true,
       constrainHeader: true,
-      minimizable: true,
-      maximizable: true
+      minimizable: !config.modal,
+      maximizable: !config.modal
     });
     cls = cls || 'Ext.window.Window';
     var me = this, win = me.add(Ext.create(cls, config));
-    me.windows.add(win);
-    win.taskButton = me.taskbar.addTaskButton(win);
-    win.animateTarget = win.taskButton.el;
-    win.on({
-      activate: me.updateActiveWindow,
-      beforeshow: me.updateActiveWindow,
-      deactivate: me.updateActiveWindow,
-      minimize: me.minimizeWindow,
-      destroy: me.onWindowClose,
-      scope: me
-    });
+    if (!win.modal) {
+      me.windows.add(win);
+      win.taskButton = me.taskbar.addTaskButton(win);
+      win.animateTarget = win.taskButton.el;
+      win.on({
+        activate: me.updateActiveWindow,
+        beforeshow: me.updateActiveWindow,
+        deactivate: me.updateActiveWindow,
+        minimize: me.minimizeWindow,
+        destroy: me.onWindowClose,
+        scope: me
+      });
+    }
     win.on({
       boxready: function() {
         win.dd.xTickSize = me.xTickSize;
@@ -270,6 +273,7 @@ Ext.define('App.Desktop', {
         me.tasks = new Ext.toolbar.Toolbar({
           flex: 1,
           cls: 'a-desktop-tasks',
+//          items: ['&#160;'],
           layout: {
             overflowHandler: 'Scroller'
           }
@@ -307,7 +311,7 @@ Ext.define('App.Desktop', {
         items[2].setDisabled(win.maximized === true || win.hidden === true);
       },
     
-      onWindowMenuHide: function() {
+      onWindowMenuHide: function(menu) {
         menu.win = null;
       },
     
@@ -350,6 +354,7 @@ Ext.define('App.Desktop', {
           toggleGroup: 'all',
           width: 140,
           text: Ext.util.Format.ellipsis(win.title, 20),
+          textAlign: 'left',
           listeners: {
             click: me.onTaskButtonClick,
             scope: me
@@ -388,13 +393,14 @@ Ext.define('App.Desktop', {
       ariaRole: 'menu',
       cls: 'x-menu a-desktop-start-menu',
       defaultAlign: 'bl-tl',
-      title: '',
+      title: desktop.manager.user,
+      iconCls: desktop.manager.userCls || 'a-desktop-user-icon',
       floating: true,
       shadow: true,
       width: 300,
 
       initComponent: function() {
-        var me = this
+        var me = this;
         me.setComponentLayout(desktop.createStartDock());
         me.menu = new Ext.menu.Menu({
           cls: 'a-desktop-start-menu-body',
@@ -453,7 +459,7 @@ Ext.define('App.Desktop', {
           me.doConstrain();
         }
         return me;
-      },
+      }
     });
     return new clazz(arguments);
   },

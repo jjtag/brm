@@ -18,7 +18,7 @@ Ext.define('App.Dialog', {
       handler: me.onSaveClick
     }];*/
     me.callParent(arguments);
-  },
+  }
 
 /*  onSaveClick: function() {
     var me = this, form = me.form.getForm();

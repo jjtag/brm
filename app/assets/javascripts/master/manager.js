@@ -4,40 +4,7 @@ Ext.define('App.Manager', {
   },
   isReady: false,
   useQuickTips: true,
-  modules: ['App.Currency'],//['App.Currency', 'App.Demo1'],
-  menus: [{
-    module: 'App.Demo'
-  }, {
-    module: 'App.Demo1',
-  }, {
-    text: 'Menu2',
-  }, {
-    text: 'Menu2',
-  }, {
-    text: 'Menu2',
-  }, {
-    text: 'Menu2',
-  }, {
-    text: 'Menu2',
-  }, {
-    text: 'Menu2',
-  }, {
-    text: 'Menu3'
-  }],
-  sides: [{
-    module: 'App.Demo'
-  }, {
-    iconCls: 'add',
-    text: 'Side2'
-  }, {
-    iconCls: 'add',
-    text: 'Side3'
-  }],
-  tools: ['->', {
-    module: 'App.Logout'
-  }],
-  shortcuts: ['App.Currency', 'App.Demo1', 'App.Logout'],
-  
+
   constructor: function(config) {
     var me = this;
     me.addEvents('ready', 'beforeunload');
@@ -71,15 +38,15 @@ Ext.define('App.Manager', {
         module = me.getModule(shortcut);
         shortcut = Ext.apply({
           module: module
-        }, module && module.config);
+        }, module && module.launcher);
       }
       items.push(shortcut);
     });
     me.shortcuts = items;
     
-    me.initItems(me.menus);
-    me.initItems(me.sides);
-    me.initItems(me.tools);
+    me.menus = me.initItems(me.menus);
+    me.sides = me.initItems(me.sides);
+    me.tools = me.initItems(me.tools);
     
     me.desktop = new App.Desktop(me);
     me.viewport = new Ext.container.Viewport({
@@ -90,20 +57,36 @@ Ext.define('App.Manager', {
     me.isReady = true;
     me.fireEvent('ready', me);
   },
-  
+
   initItems: function(items) {
-    var me = this;
+    var me = this, objs = [];
     Ext.each(items, function(item) {
-      if (item.module) {
-        var module = me.getModule(item.module);
-        item = Ext.applyIf(Ext.applyIf(item, module && module.config), {
+      var module = null;
+      if (Ext.isString(item)) {
+        module = me.getModule(item);
+        module && (item = {});
+      } else if (Ext.isString(item.module)) {
+        module = me.getModule(item.module);
+      }
+      if (module) {
+        item.module = module;
+        item = Ext.applyIf(Ext.apply(item, module.launcher), {
           handler: function() {
             module.run();
           }
         });
-        item.items && me.initItems(item.items);
       }
+      item.textAlign = 'left';
+      if (item.menu && item.menu.items && item.menu.items.length) {
+        Ext.apply(item, {
+          handler: Ext.emptyFn,
+          hideOnClick: false
+        });
+        item.menu.items = me.initItems(item.menu.items);
+      }
+      objs.push(item);
     });
+    return objs;
   },
 
 /*

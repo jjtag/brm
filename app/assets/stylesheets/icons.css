@@ -1,0 +1,42 @@
+
+.a-add-icon {
+	background-image: url('add.png');
+}
+
+.a-edit-icon {
+	width: 16px;
+	height: 16px;
+	margin: 0 5px;
+	background-image: url('edit.png');
+}
+
+.a-delete-icon {
+	width: 16px;
+	height: 16px;
+	margin: 0 5px;
+	background-image: url('delete.png');
+}
+
+.a-small-icon {
+	background-image: url('grid.png');
+}
+
+.a-big-icon {
+	background-image: url('shortcut.png');
+}
+
+.a-customer-icon {
+	background-image: url('grid.png');
+}
+
+.a-customer-big-icon {
+	background-image: url('shortcut.png');
+}
+
+.a-currency-icon {
+	background-image: url('grid.png');
+}
+
+.a-currency-big-icon {
+	background-image: url('shortcut.png');
+}

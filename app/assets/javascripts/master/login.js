@@ -11,9 +11,13 @@ Ext.define('App.Login', {
 
   initComponent: function() {
     var me = this;
+    Ext.apply(me, {
+      closable: false,
+      resizable: false
+    });
 //    me.modal = true;
-    me.closable = false;
-    me.resizable = false;
+//    me.closable = false;
+//    me.resizable = false;
     
     me.form = new Ext.form.Panel({
       frame: true,
@@ -25,12 +29,7 @@ Ext.define('App.Login', {
         labelWidth: 55,
         xtype: 'textfield',
         allowBlank: false,
-        width: 215,
-/*
-        msgTarget: 'side',
-        autoFitErrors: false,
-        labelPad: 10
-*/
+        width: 215
       },
       items: [{
         cls: 'a-login-user',
@@ -57,7 +56,7 @@ Ext.define('App.Login', {
     me.items = [me.form];
     me.buttons = [{
       text: '登录',
-      iconCls: 'a-login-submit',
+      iconCls: 'a-login-icon',
       handler: me.submit,
       scope: me
     }];
@@ -74,6 +73,7 @@ Ext.define('App.Login', {
       me.username.setValue(me.cookie.get('username'));
     }
     me.callParent(arguments);
+    //me.username.select();
   },
   
   initEvents: function() {
@@ -103,8 +103,8 @@ Ext.define('App.Login', {
       },
       failure: function(form, action) {
         Ext.Msg.alert('警告', action.result.msg, function() {
-          me.password.setRawValue(null);
-          me.password.focus();
+          me.password.select();
+          //me.password.focus();
         });
       }
     });

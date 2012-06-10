@@ -3,7 +3,7 @@ Ext.define('App.Logout', {
 
   url: 'logout',
 
-  config: {
+  launcher: {
     text: '注销',
     iconCls: 'a-logout-icon',
     tooltip: '注销当前用户'

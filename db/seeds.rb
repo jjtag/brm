@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+
+admin = User.new(:name => 'admin')
+admin.slat = admin.object_id.to_s
+admin.code = User.encrypt('admin', admin.slat)
+admin.save

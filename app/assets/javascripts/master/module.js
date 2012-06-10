@@ -16,13 +16,15 @@ Ext.define('App.Module', {
 
   init: Ext.emptyFn,
 
-  run: function() {
+  run: function(modal) {
     var me = this, desktop = me.manager.desktop, win = desktop.getWindow(me.id);
     if (!win) {
-      me.windowConfig = Ext.apply(me.windowConfig || {}, {
-        id: me.id
+      var config = Ext.isFunction(me.windowConfig) ? me.windowConfig() : me.windowConfig || {};
+      Ext.applyIf(config, {
+        title: me.launcher.text,
+        iconCls: me.launcher.iconCls
       });
-      win = desktop.createWindow(me.windowConfig, me.windowClass);
+      win = desktop.createWindow(config, me.windowClass);
     }
     desktop.restoreWindow(win);
   }
